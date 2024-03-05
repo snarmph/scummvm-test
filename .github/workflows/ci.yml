@@ -61,7 +61,7 @@ jobs:
           ls
           cd ../../../
       - name: Call create_project
-        run: |
+        run: | 
           mkdir build-scummvm
           cd build-scummvm
           ../devtools/create_project/cmake/Debug/create_project.exe .. --msvc --vcpkg --enable-all-engines ${{ matrix.configFlags }}
