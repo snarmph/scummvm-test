@@ -15,7 +15,7 @@ jobs:
           - platform: x64
             arch: x64
             triplet: x64-windows
-            configFlags: --enable-discord --enable-faad --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx
+            configFlags: --enable-discord --enable-faad --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx --disable-faad
     env:
       CONFIGURATION: Release
       PLATFORM: ${{ matrix.platform }}
@@ -55,7 +55,7 @@ jobs:
         run: | 
           mkdir build-scummvm
           cd build-scummvm
-          ../devtools/create_project/cmake/Debug/create_project.exe .. --msvc --vcpkg --enable-all-engines ${{ matrix.configFlags }}
+          ../devtools/create_project/cmake/Debug/create_project.exe .. --msvc --vcpkg ${{ matrix.configFlags }}
           ls
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1.3
