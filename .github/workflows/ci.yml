@@ -15,7 +15,7 @@ jobs:
           - platform: x64
             arch: x64
             triplet: x64-windows
-            configFlags: --enable-discord --enable-faad --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx --disable-faad
+            configFlags: --enable-discord --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx --disable-faad
     env:
       CONFIGURATION: Release
       PLATFORM: ${{ matrix.platform }}
@@ -38,6 +38,9 @@ jobs:
       - name: Integrate vcpkg
         run: |
           ${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}/vcpkg integrate install
+      - name: Install libs
+        run: |
+          ${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}/vcpkg install
       - name: Upload libs
         uses: actions/upload-artifact@v3
         if: ${{ matrix.buildArtifacts }} == 'true'
