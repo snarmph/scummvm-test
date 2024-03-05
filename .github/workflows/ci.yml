@@ -15,7 +15,7 @@ jobs:
           - platform: x64
             arch: x64
             triplet: x64-windows
-            configFlags: --enable-discord --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx --disable-faad
+            configFlags: --enable-discord --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx --disable-faad --disable-all-engines --enable-engine=director
     env:
       CONFIGURATION: Release
       PLATFORM: ${{ matrix.platform }}
