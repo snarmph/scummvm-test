@@ -17,7 +17,7 @@ jobs:
             triplet: x64-windows
             configFlags: --enable-discord --enable-faad --enable-gif --enable-mikmod --enable-mpeg2 --enable-vpx
     env:
-      CONFIGURATION: Debug6
+      CONFIGURATION: Release
       PLATFORM: ${{ matrix.platform }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       VCPKG_FEATURE_FLAGS: dependencygraph
