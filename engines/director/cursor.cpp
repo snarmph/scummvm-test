@@ -35,7 +35,7 @@ Cursor::Cursor() {
 	_keyColor = 0xff;
 
 	_cursorResId = Datum(0);
-	_cursorType = Graphics::kMacCursorArrow;
+	_cursorType = Graphics::kMacCursorOff;
 
 	_usePalette = false;
 }
@@ -130,7 +130,7 @@ void Cursor::readBuiltinType(Datum resourceId) {
 	}
 
 
-	switch(resourceId.asInt()) {
+	switch(200/*resourceId.asInt()*/) {
 	case -1:
 	case 0:
 		resetCursor(Graphics::kMacCursorArrow, true, resourceId);
@@ -199,7 +199,7 @@ void Cursor::readFromResource(Datum resourceId) {
 		// TODO: figure out where to read custom cursor in windows platform
 		// currently, let's just set arrow for default one.
 		if (g_director->getPlatform() == Common::kPlatformWindows) {
-			resetCursor(Graphics::kMacCursorArrow, true, resourceId);
+			resetCursor(Graphics::kMacCursorOff, true, resourceId);
 			break;
 		}
 
@@ -210,7 +210,7 @@ void Cursor::readFromResource(Datum resourceId) {
 			for (uint i = 0; i < g_director->_winCursor.size(); i++) {
 				for (uint j = 0; j < g_director->_winCursor[i]->cursors.size(); j++) {
 					if (id == g_director->_winCursor[i]->cursors[j].id.getID()) {
-						resetCursor(Graphics::kMacCursorCustom, false, Datum((int)id));
+						resetCursor(Graphics::kMacCursorOff, false, Datum((int)id));
 						readSuccessful = true;
 					}
 				}
@@ -237,7 +237,7 @@ bool Cursor::readFromArchive(Archive *archive, uint16 resourceId) {
 		_keyColor = 0xff;
 		readSuccessful = true;
 
-		resetCursor(Graphics::kMacCursorCustom, false, resourceId);
+		resetCursor(Graphics::kMacCursorOff, false, resourceId);
 	}
 	delete cursorStream;
 	return readSuccessful;
@@ -258,7 +258,7 @@ void Cursor::resetCursor(Graphics::MacCursorType type, bool shouldClear, Datum r
 }
 
 CursorRef::CursorRef() {
-	_cursorType = Graphics::kMacCursorArrow;
+	_cursorType = Graphics::kMacCursorOff;
 	_cursorResId = Datum(0);
 }
 
